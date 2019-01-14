@@ -1,4 +1,3 @@
-print ("Amanda Holbrook")
 import os, sys
 
 def createGFF(stepping, marker, file, gff):
@@ -23,7 +22,7 @@ def createGFF(stepping, marker, file, gff):
 			line = lines.split() #splits the current line up into strings
 			id = line[0].replace(marker, "") #sets the first string as new id
 			seq="" #initiates a new seq
-			print("importing sequence", id, "....")
+			print("importing sequence", id, "....\n")
 		else:
 			seq+=lines.rstrip() #fills sequence without whites
 
