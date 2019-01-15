@@ -1,11 +1,23 @@
 from gffgenerator import createGFF
-import sys, os
+import sys, os, argparse
 
 print("\nA Bioinformatics Project")
 print("Written by: \tAmanda Holbrook")
 print("\t\tColin Kruse\n\n")
 
-file = sys.argv[1] #input file
+parser = argparse.ArgumentParser()
+parser.add_argument('-s', action = "store", dest = 'step', help='input the increment number')
+parser.add_argument('-f', action = "store", dest = 'infile', help='input genome file in fasta format')
+parser.add_argument('-o', action = "store", dest = 'output', help='input string for output file prefix')
+parser.add_argument('-a', action = "store", dest = 'four', help='fourth choice')
+
+results = parser.parse_args()
+print('step= ', results.step)
+print('file= ', results.infile)
+print('output= ', results.output)
+print('four= ', results.four)
+
+file = results.infile
 
 filename = file[0:file.find('.')] #grabbing file name w/o extension
 
