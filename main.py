@@ -1,4 +1,5 @@
 from gffgenerator import createGFF
+from fastaformatter import format
 import sys, os, argparse
 
 print("\nA Bioinformatics Project")
@@ -17,21 +18,26 @@ print('file= ', results.infile)
 print('output= ', results.output)
 print('four= ', results.four)
 
-file = results.infile
+fastafile = results.infile #fasta file
 
-filename = file[0:file.find('.')] #grabbing file name w/o extension
+filename = fastafile[0:fastafile.find('.')] #grabbing file name w/o extension
+
+formattedfasta = 'formatted_' + fastafile
 
 gff = open(filename + '.gff', 'w') #new gff file to be created, w/ old filename
 stepping = 50 #interval for gff sequence
 marker = ">" #marker for new sequence
 
-print("Step 1: Creating gff file.\n")
-createGFF(stepping, marker, file, gff)
+print("Step 1: Make sure fasta is properly formatted.")
+format(fastafile, formattedfasta)
 
-print("Step 2: Counts at each location.\n")
+print("Step 2: Creating gff file.\n")
+createGFF(stepping, marker, formattedfasta, gff)
+
+print("Step 3: Counts at each location.\n")
 print("Merge files and analyze.\n")
 
-print("Step 3: Differential counts per region.\n")
+print("Step 4: Differential counts per region.\n")
 print("Matrix dissection (DREME).\n")
 
-print("Step 4: Binding Matrix.\n")
+print("Step 5: Binding Matrix.\n")
