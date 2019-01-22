@@ -24,12 +24,12 @@ filename = fastafile[0:fastafile.find('.')] #grabbing file name w/o extension
 
 formattedfasta = 'formatted_' + fastafile
 
-gff = open(filename + '.gff', 'w') #new gff file to be created, w/ old filename
+gff = filename + '.gff' #new gff file to be created, w/ old filename
 stepping = 50 #interval for gff sequence
 marker = ">" #marker for new sequence
 
-print("Step 1: Make sure fasta is properly formatted.")
-format(fastafile, formattedfasta)
+print("Step 1: Make sure fasta is properly formatted.\n")
+format(fastafile, formattedfasta, marker)
 
 print("Step 2: Creating gff file.\n")
 createGFF(stepping, marker, formattedfasta, gff)
