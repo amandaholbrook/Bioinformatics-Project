@@ -15,7 +15,7 @@ def format(fastafile, formattedfasta, marker):
 				first="FALSE"
 			else:
 				out.write('\n')
-				out.write(marker + id)
+				out.write(id)
 		else:
 			out.write(lines.strip())
 

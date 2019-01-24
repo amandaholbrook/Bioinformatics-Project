@@ -7,27 +7,30 @@ def createGFF(stepping, marker, formattedfasta, gff):
 	out = open(gff, "w")
 	for lines in f:
 		if(lines.startswith(marker)): #checking for new sequence identifier
-			if(first=="FALSE"): #doesn't run first time through
-				tmp = (id + "\t" + "RefSeq" + "\t" + "region" + "\t" +  "1" +  "\t" + str(len(seq))\
-					+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + ";Name=" + id + "\n")
-				out.write(tmp)
-				for x in range(1, len(seq), stepping):
-					next = x + stepping
-					if(next > len(seq)):
-						next = len(seq)
-					line1 = (id + "\t" + "RefSeq" + "\t" + "gene" + "\t" + str(x) +  "\t" + str(next)\
-						+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + "_" + str(x) + ";Name=" + id + "_" + str(x) + "\n")
-					line2 = (id + "\t" + "RefSeq" + "\t" + "mRNA" + "\t" + str(x) +  "\t" + str(next)\
-						+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + "_" + str(x) + ";Name=" + id + "_" + str(x) + "\n")
-					out.write(line1)
-					out.write(line2)
-			first = "FALSE"
 			line = lines.split() #splits the current line up into strings
 			id = line[0].replace(marker, "") #sets the first string as new id
 			seq="" #initiates a new seq
 			print("importing sequence", id, "....\n")
+
 		else:
 			seq=lines.rstrip()
+
+
+			region = (id + "\t" + "RefSeq" + "\t" + "region" + "\t" +  "1" +  "\t" + str(len(seq))\
+				+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + ";Name=" + id + "\n")
+			out.write(region) #prints for full region
+
+
+			for x in range(1, len(seq), stepping): #prints incrementing by preset step
+				next = x + stepping
+				if(next > len(seq)):
+					next = len(seq)
+				line1 = (id + "\t" + "RefSeq" + "\t" + "gene" + "\t" + str(x) +  "\t" + str(next)\
+					+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + "_" + str(x) + ";Name=" + id + "_" + str(x) + "\n")
+				line2 = (id + "\t" + "RefSeq" + "\t" + "mRNA" + "\t" + str(x) +  "\t" + str(next)\
+					+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + "_" + str(x) + ";Name=" + id + "_" + str(x) + "\n")
+				out.write(line1) # gene
+				out.write(line2) # MRNA
 
 	out.close()
 	f.close()
