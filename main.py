@@ -1,7 +1,7 @@
 from gffGenerator import createGFF
 from fastaFormatter import format
 from batchRename import rename
-import sys, os, argparse
+import sys, os, argparse, subprocess
 
 print("\nA Bioinformatics Project")
 print("Written by: \tAmanda Holbrook")
@@ -42,6 +42,11 @@ print("Creating gff file.\n")
 createGFF(step, marker, formatted_fasta, gff)
 #Here we will use GffCompare to merge this GFF with a
 #user-provided one (if they provide it)
+#filename1 = gff
+#filename2 = gff_given
+#args = "gffcompare/gffcompare.exe -config " + filename1 + filename2
+#subprocess.call(args, stdout=FNULL, stderr=FNULL, shell=False)
+
 #LOWEST PRIORITY:If we get EVERYTHING else done we'll
 #add on something here to add descriptors to the the
 #regions that don't code for genes.
