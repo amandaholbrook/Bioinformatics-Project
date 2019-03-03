@@ -2,9 +2,9 @@
 
 import sys, os
 
-def format(fastafile, formattedfasta, marker):
+def format(fastafile, formattedfasta, marker, directory):
 	first="TRUE"
-	out = open(formattedfasta, 'w')
+	out = open(directory + formattedfasta, 'w')
 	f = open(fastafile)
 	for lines in f:
 		if(lines.startswith(marker)): #finds marker

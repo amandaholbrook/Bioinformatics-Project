@@ -1,9 +1,9 @@
 import os, sys
 
-def createGFF(stepping, marker, formattedfasta, gff, verbose):
+def createGFF(stepping, marker, formattedfasta, gff, verbose, f_directory):
 
 	first="TRUE"
-	f = open(formattedfasta)
+	f = open(f_directory + formattedfasta)
 	out = open(gff, "w")
 	for lines in f:
 		if(lines.startswith(marker)): #checking for new sequence identifier

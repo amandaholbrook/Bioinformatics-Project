@@ -46,7 +46,7 @@ if read_type != None:
 	m_directory != None, "Please provide a directory of read count files (option -mdir)"
 
 filename = fasta_file[0:fasta_file.find('.')] #grabbing file name w/o extension
-formatted_fasta = f_directory + 'formatted_' + fasta_file
+formatted_fasta = 'formatted_' + fasta_file
 fasta_file = f_directory + fasta_file
 
 gff = f_directory + filename + '.gff' #new gff file to be created, w/ old filename
@@ -57,14 +57,14 @@ marker = ">" #marker for new sequence
 
 if verbose:
 	print("Formatting fasta file ....")
-format(fasta_file, formatted_fasta, marker)
+format(fasta_file, formatted_fasta, marker, f_directory)
 if verbose:
 	print("Done.\n")
 
 
 if verbose:
 	print("Generating a gff file ....")
-createGFF(step, marker, formatted_fasta, gff, verbose)
+createGFF(step, marker, formatted_fasta, gff, verbose, f_directory)
 if verbose:
 	print("Done.\n")
 
