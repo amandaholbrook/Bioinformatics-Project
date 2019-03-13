@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 ####################################
 ## A Bioinformatics Project
@@ -51,28 +51,29 @@ assert fasta_file != None, "Please enter a fasta file (option -fasta)"
 assert f_directory != None, "Please enter directory for fasta file (option -fdir)"
 
 if csv != None:
-	r_directory != None, "Please provide a directory of files to rename (option -rdir)"
+	assert r_directory != None, "Please provide a directory of files to rename (option -rdir)"
 
 if read_type != None:
-	m_directory != None, "Please provide a directory of read count files (option -mdir)"
+	assert m_directory != None, "Please provide a directory of read count files (option -mdir)"
 
+
+#creating naem for formatted fasta file
 filename = fasta_file[0:fasta_file.find('.')] #grabbing file name w/o extension
 formatted_fasta = 'formatted_' + fasta_file
 fasta_file = f_directory + fasta_file
 
+#creating name for new gff file
 gff = f_directory + filename + '.gff' #new gff file to be created, w/ old filename
 marker = ">" #marker for new sequence
 
-
-
-
+#formatting the given fasta file
 if verbose:
 	print("Formatting fasta file ....")
 format(fasta_file, formatted_fasta, marker, f_directory)
 if verbose:
 	print("Done.\n")
 
-
+#generating a GFF gile from the formatted fasta file
 if verbose:
 	print("Generating a gff file ....")
 createGFF(step, marker, formatted_fasta, gff, verbose, f_directory)
@@ -80,6 +81,7 @@ if verbose:
 	print("Done.\n")
 
 
+#SKIP FOR NOW
 #Here we will use gffMerge to merge this GFF with a
 #user-provided one (if they provide it)
 #filename1 = gff
@@ -87,12 +89,12 @@ if verbose:
 #args = "gffMerge -f " + filename1 + " " + filename2
 #os.system(args)
 
-
 #LOWEST PRIORITY:If we get EVERYTHING else done we'll
 #add on something here to add descriptors to the the
 #regions that don't code for genes.
 
 
+#using BWA and HTseq-count to get counts
 if verbose:
 	print("Getting counts at each location ....")
 
@@ -103,12 +105,7 @@ if verbose:
 #convert alignments to counts
 
 
-if verbose:
-	print("Merge files and analyze. (Optional)\n")
-#Here we will use the rename script you made (if the user
-#provided one)
-
-
+#renaming files if csv was given
 if csv != None:
 	if verbose:
 		print("Renaming files in directory ....")
@@ -116,7 +113,7 @@ if csv != None:
 	if verbose:
 		print("Done.\n")
 
-
+#combining counts if read_type was given
 if read_type != None:
 	if verbose:
 		print("Merging files by ", read_type, "reads ....")
