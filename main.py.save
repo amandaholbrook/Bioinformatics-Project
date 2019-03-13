@@ -1,17 +1,3 @@
-#!/usr/bin/env python
-
-####################################
-## A Bioinformatics Project
-## High throughput sequencing data
-## analysis pipeline development
-###################################
-## Author: Amanda Holbrook
-##	 & Colin Kruse
-## Copyright: 2019, NAME_HERE
-## Version: 1.0.0
-## Email: amandajoee@gmail.com
-###################################
-
 from gffGenerator import createGFF
 from fastaFormatter import format
 from batchRename import rename

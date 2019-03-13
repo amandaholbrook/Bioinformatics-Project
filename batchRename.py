@@ -1,7 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#this program will rename the fiels in a given directory based on input from a csv file
+####################################################
+## NAME: batchRename
+## DESC: a function to rename the files in a given
+## directory based on input from a csv file
+## AUTHOR: Amanda Holbrook
+## COPYRIGHT: 2019, batchRename
+## VERSION: 1.0.0
+####################################################
 
 import os       # for getting files from directory
 import sys      # for accessing command line arguments

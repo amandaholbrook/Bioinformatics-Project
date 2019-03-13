@@ -1,3 +1,14 @@
+#!/usr/bin/python
+
+#####################################
+## NAME: gffGenerator
+## DESC: a function to create a GFF
+## file from a given fasta file
+## AUTHOR: Amanda Holbrook
+## COPYRIGHT: 2019, gffGenerator
+## VERSION: 1.0.0
+#####################################
+
 import os, sys
 
 def createGFF(stepping, marker, formattedfasta, gff, verbose, f_directory):

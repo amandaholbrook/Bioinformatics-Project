@@ -1,4 +1,13 @@
-#this program will make sure the fasta file is correctly formatted
+#!/usr/bin/python
+
+###############################################
+## NAME: fastaFormatter
+## DESC: a function to format the given fasta
+## file to ensure it can be read correctly
+## AUTHOR: Amanda Holbrook
+## COPYRIGHT: 2019, fastaFormatter
+## VERSION: 1.0.0
+###############################################
 
 import sys, os
 

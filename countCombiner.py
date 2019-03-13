@@ -1,3 +1,16 @@
+#!/usr/bin/python
+
+#########################################################
+## NAME: countCombiner
+## DESC: a function to combine the counts of each Gene
+## by user chosen read type of the Genes in any number
+## of files, resulting in one combined file
+## AUTHOR: Amanda Holbrook
+## COPYRIGHT: 2019, countCombiner
+## VERSION: 1.0.0
+########################################################
+
+
 print("Amanda Holbrook")
 import sys, os
 import pandas as pd
