@@ -28,6 +28,7 @@ parser.add_argument('-verbose', action = "store_true", dest = 'verbose', help='i
 parser.add_argument('-merge', action = "store", dest = 'mergedfile', default = "merged.out", help='input name for merged file')
 parser.add_argument('-read', action = "store", dest = 'read_type', help='input read type to merge by (Unstranded, Stranded, Reverse')
 parser.add_argument('-ext', action = "store", dest = 'file_type', default = ".tab", help='input extension for files to merge')
+parser.add_argument('-max', action = "store", dest = 'max_threads', default = 2, help='max threads for BWA')
 
 results = parser.parse_args()
 
@@ -41,6 +42,7 @@ verbose = results.verbose #printing more details
 mergedfile = results.mergedfile #name for mergedfile
 filetype = results.file_type #file extension of files to merge
 read_type = results.read_type #read type to merge by
+max_threads = results.max_threads #max threads for BWA
 
 if verbose:
         print("\nA Bioinformatics Project")
@@ -57,7 +59,7 @@ if read_type != None:
 	assert m_directory != None, "Please provide a directory of read count files (option -mdir)"
 
 
-#creating naem for formatted fasta file
+#creating name for formatted fasta file
 filename = fasta_file[0:fasta_file.find('.')] #grabbing file name w/o extension
 formatted_fasta = 'formatted_' + fasta_file
 fasta_file = f_directory + fasta_file
@@ -98,12 +100,19 @@ if verbose:
 if verbose:
 	print("Getting counts at each location ....")
 
+#BWA index
+#args2 = "bwa index [-a bwtsw|is] input_reference.fasta index_prefix"
+#os.system(args2)
+#BWA mem
+#args3 =
+#os.system(args3)
+
+#feature-counts
+#args4 = "featureCounts -T #ofcores -a YOURGFFFILE -o NAMEOFINPUTFILE_counts OUTPUTOFALIGNMENT"
+#os.system(args4)
+
 if verbose:
 	print("Done.\n")
-#Here we will use BWA (burrows wheeler aligner) to align
-#reads to fasta/GFF file. Then we will use HTseq-count to
-#convert alignments to counts
-
 
 #renaming files if csv was given
 if csv != None:
@@ -122,9 +131,17 @@ if read_type != None:
 		print("Done.\n")
 
 
+#takes previous found counts and produces differential counts
+if verbose:
+	print("Producing differential counts per region ....")
+
+#R script
+#args 4 = ""
+#os.system(args4)
 
 if verbose:
-	print("Differential counts per region.\n")
+        print("Done.\n")
+
 #here we will run an R script (I can provide you with the
 #basic script that isn't properly automated yet anytime) to
 #produce differential counts for regions of interest. this will
