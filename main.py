@@ -154,3 +154,4 @@ if verbose:
 #we will pull all the sequences of regions that are significant
 #based on step 4 (and the IDs we created) and we'll run motif
 #analysis on them. This will be one of the primary outputs from the pipeline
+
