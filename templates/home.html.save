@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<title>PROJECT NAME</title>
+<script type="text/javascript">
+//alert("Welcome to my project");
+
+function rename() {
+    var box = document.getElementById("renamefiles");
+    var text = document.getElementById("rename");
+    if(box.checked == true){
+	text.style.display = "block";
+    }else{
+	text.style.display = "none";
+    }
+}
+
+function counts() {
+    var box = document.getElementById("combinecounts");
+    var text = document.getElementById("counts");
+    if(box.checked == true){
+        text.style.display = "block";
+    }else{
+        text.style.display = "none";
+    }
+}
+</script>
+</head>
+
+<body>
+<h1>NAME HERE</h1>
+<p>Please enter all options.</p>
+
+<p2>Fasta file for generating gff</p2><br>
+<input type=file name=fastafile > 
+<br> <br>
+Name for GFF<br>
+<input type="text" value=".gff">
+<br><br>
+Step by<br>
+<input type="text" value=50>
+<br><br>
+<input type="checkbox" id="renamefiles" onclick="rename()" checked>Rename files?
+<div id="rename">
+<br>
+Choose all files to rename<br>
+<input type=file id=rename multiple="multiple">
+<br><br>
+CSV to rename with<br>
+<input type=file id=rename>
+</div>
+<br> <br>
+
+<input type="checkbox" id="combinecounts" onclick="counts()" checked>Merge counts?<br>
+<div id="counts">
+<br>
+Choose all files for merging<br>
+<input type=file id=counts multiple="multiple">
+<br><br>
+Merge by (pick ONE)<br>
+<input type="checkbox">Stranded<br>
+<input type="checkbox">Unstranded<br>
+<input type="checkbox">Reverse<br>
+<br>
+Name for merged file<br>
+<input type="text" value = "merged.out">
+<br><br>
+Extension of files to merge<br>
+<input type="text" value = ".tab">
+</div>
+<br> <br>
+
+</body>
+</html>
+nano ma
