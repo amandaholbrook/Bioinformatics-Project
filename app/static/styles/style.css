@@ -1,0 +1,24 @@
+body {
+    background-image: url(https://images.theconversation.com/files/17729/original/md78kkzd-1353034364.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=496&fit=clip);
+    background-repeat: repeat;
+    font-family: monospace;
+}
+
+#abstract {
+    font-family: cursive;
+    font-weight: bold;
+    text-align: center;
+    color: navy;
+    font-size: 15pt;
+}
+
+#credits {
+    font-family: monospace;
+    color: navy;
+    text-align: center;
+    font-size: 30pt;
+}
+
+#title{
+    font-family: serif;
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<title>Overview</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<body>
+<p1 id = "overview">
+The Wyatt Lab at Ohio University leverages bioinformatics--the 
+interface of molecular biology and computer science--to study the 
+complex signaling events that allow plants to respond to gravity. 
+This research heavily involves next generation sequencing technology 
+to analyze DNA to discover new information about the expression and 
+function of genes. Next generation sequencing can generate millions 
+or billions of DNA sequences in a single run creating massive datasets. 
+Deriving meaning from this data requires computational and biological 
+expertise as well as a significant investment of time to interpret results. 
+This is where the use of bioinformatics becomes necessary to save both 
+time and labor.  One area with especially poorly developed tools is the 
+analysis of DNA sequencing data produced by Chromatin Immunoprecipitation 
+experiments (experiments examining the DNA sequences bound by a specific 
+protein). Analysis of Replicated CHIPseq (ARC) use the reference genome 
+fasta file and generates a general feature format (gff) file providing 
+unique identifiers for each region on each chromosome in the reference 
+genome. ARC will then align the experimental sequence reads to the reference 
+genome and bin them by the newly generated regions.  Finally, it will generate 
+differential binding profiles to provide the user with output data identifying 
+likely DNA binding sites for the protein of interest.  It will also have a 
+helper function where the fasta files are first formatted to ensure the program 
+can read them, as well as a few optional features to optimize end-user experience 
+and allow users to customize essential parameters. ARC is implemented with python 
+in a Flask web application to make it simple and easy for anyone to use. HARC will 
+be beta tested by analyzing CHIPseq data from 3 transcription factors (DNA binding 
+proteins regulating gene expression) that have been previously identified through 
+NASA research in The Wyatt Lab.  This research was supported by the Program to Aid 
+Career Exploration (PACE) at Ohio University.
+</p1>
+
+</body>
+</html>
+
