@@ -8,6 +8,7 @@ from python.countCombiner import merge
 app = Flask(__name__)
 app.secret_key = "HARC"
 
+# route for uploading fasta file
 @app.route('/start', methods = ['GET', 'POST'])  
 def upload():  
 	if request.method == 'POST':  
@@ -18,6 +19,9 @@ def upload():
 	else:
 		return render_template('start.html')
 
+
+# route for converting fasta file
+# asks for gff file name and step count
 @app.route("/gff", methods=['GET', 'POST'])
 def gff():
 	path = './HARCresults/'
@@ -34,7 +38,8 @@ def gff():
 	else:
 		return render_template('gff.html')
 
-@app.route("/rename", methods=['GET', 'POST'])
+# route for renaming a directory/group of files
+@app.route('/rename', methods=['GET', 'POST'])
 def rename2():
 	path = './HARCresults/'
 	if request.method == 'POST':
@@ -51,6 +56,7 @@ def rename2():
 		else:
 			return render_template('rename.html')
 
+#route for uploading files to combine the counts
 @app.route('/combinesubmit', methods = ['GET', 'POST'])  
 def comsub():  
 	if request.method == 'POST':  
@@ -61,6 +67,8 @@ def comsub():
 	else:
 		return render_template('combinesubmit.html')
 
+#route for combing file counts
+#asks for count type, name for merged file, and ext of files to be merged
 @app.route("/combine", methods=['GET', 'POST'])
 def combine():
 	path = './HARCresults/'
@@ -87,15 +95,18 @@ def combine():
 		return render_template('combine.html')	
 
 
-
+# route for results page
+# from here the user can do anotehr conversion, or chose to do another taskx
 @app.route("/results")
 def results():
 	return render_template('results.html')
 
+# route for project credits
 @app.route("/credits")
 def credits():
 	return render_template('credits.html')
 
+# route for project overview
 @app.route("/overview")
 def overview():
 	return render_template('overview.html')

@@ -1,7 +1,7 @@
 # Bioinformatics-Project
 
 NAME:
-NAME_HERE
+HARC (HTML-enabled Analysis of Replicated CHIPseq)
 
 AUTHORS:
 Amanda Holbrook &

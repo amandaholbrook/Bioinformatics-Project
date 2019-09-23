@@ -5,12 +5,27 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 
 <h1>Complete! <br> </h1>
-<h2>Find results in folder "HARCresults".</h2>
+<h2>Find results in folder "HARCresults"</h2>
+<div id = resultbuttons>
+<div id = r1>
 <button onclick ="window.location.href = '/start'"> Do another conversion</a> <br><br>
-
+</div> <br>
+<div id = r2>
 <button onclick ="window.location.href = '/rename'"> Rename a batch of files</a> <br><br>
-
+</div> <br>
+<div id = r3>
 <button onclick ="window.location.href = '/combinesubmit'"> Combine gene counts</a> <br><br>
+</div>
+</div>
+
+    <div id = about>
+            <div id = b1>
+            <button onclick ="window.location.href = '/overview'"> <br><br><br>Project Abstract</a> <br><br>
+            </div>
+            <div id = b2>
+            <button onclick ="window.location.href = '/credits'">  Project  Credits</a> <br><br>
+            </div>
+        </div>
 
 </body>
 </html>

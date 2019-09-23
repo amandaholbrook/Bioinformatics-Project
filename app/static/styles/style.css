@@ -6,7 +6,7 @@ body {
 
 #abstract {
     font-family: cursive;
-    font-weight: bold;
+    font-weight: bolder;
     text-align: center;
     color: navy;
     font-size: 15pt;
@@ -21,4 +21,28 @@ body {
 
 #title{
     font-family: serif;
+}
+
+#about button{
+    color: navy;
+    background-color: lightblue;
+    font-size: 7pt;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: navy;
+}
+
+#b1 button{
+    padding: 1pt 1pt;
+}
+
+#b2 button{
+    padding: 1.25pt 3pt;
+}
+
+#resultbuttons button{
+    color: navy;
+    background-color: lightblue;
+    font-size: 10pt;
 }
