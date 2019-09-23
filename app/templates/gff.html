@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<title>HARC</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+<script type="text/javascript">
+//alert("Welcome to my project");
+
+//function to show rename options
+function rename() {
+    var box = document.getElementById("renamefiles");
+    document.getElementById("renamefiles").nodeValue = true;
+    var text = document.getElementById("rename");
+    if(box.checked){
+	text.style.display = "block";
+    }else{
+	text.style.display = "none";
+    }
+}
+
+
+//function to show merge counts option
+function counts() {
+    var box = document.getElementById("combinecounts");
+    document.getElementById("combinecounts").nodeValue = true;
+    var text = document.getElementById("counts");
+    if(box.checked){
+        text.style.display = "block";
+    }else{
+        text.style.display = "none";
+    }
+}
+
+function stranded() {
+    var box = document.getElementById("s");
+    box.nodeValue = true;
+    if(box.checked){
+        box.nodeValue = true;
+    }else{
+        box.nodeValue = false;
+    }
+}
+
+function unstranded() {
+    var box = document.getElementById("u");
+    box.nodeValue = true;
+    if(box.checked){
+        box.nodeValue = true;
+    }else{
+        box.nodeValue = false;
+    }
+}
+
+function reverse() {
+    var box = document.getElementById("r");
+    box.nodeValue = true;
+    if(box.checked){
+        box.nodeValue = true;
+    }else{
+        box.nodeValue = false;
+    }
+}
+
+</script>
+</head>
+
+<body>
+    <div id = "title"> 
+    <h1>HARC</h1>
+    <h2>HTML-enabled Analysis of Replicated CHIPseq</h2>
+    </div>
+
+    <form action="" method ="POST"> 
+
+    <p>Please enter all options.</p>
+
+    <label>Name for GFF</label> 
+        <br>
+    <input type="text" name="gff" value={{request.form.gff}}>
+        <br><br>
+
+    <label>Step by</label>
+        <br>
+    <input type="text" name="step" value={{request.form.step}}>
+        <br><br>
+
+        <button type="submit">Run</button>
+
+    </form>
+</body>
+</html>

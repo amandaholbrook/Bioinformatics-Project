@@ -16,6 +16,7 @@ from gffGenerator import createGFF
 from fastaFormatter import formatter
 from batchRename import rename
 import sys, os, argparse
+import PySimpleGUI as sg
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-step', action = "store", dest = 'step', default = 50, help='input the increment number')
