@@ -15,10 +15,10 @@ print("Amanda Holbrook")
 import sys, os
 import pandas as pd
 
-def merge(mergedfile, column, filetype, path):
+def merge(mergedfile, column, filetype, path, results):
 
 	first = True
-	out = open(mergedfile, 'w')
+	out = open(results + mergedfile, 'w')
 	header_list = ['Gene']
 	dfend = pd.DataFrame(columns = header_list)
 	filelist = os.listdir(path)

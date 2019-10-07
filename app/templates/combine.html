@@ -3,6 +3,37 @@
 <head>
 <title>HARC</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+<script type="text/javascript">
+function stranded() {
+    var box = document.getElementById("s");
+    box.nodeValue = true;
+    if(box.checked){
+        box.nodeValue = true;
+    }else{
+        box.nodeValue = false;
+    }
+}
+
+function unstranded() {
+    var box = document.getElementById("u");
+    box.nodeValue = true;
+    if(box.checked){
+        box.nodeValue = true;
+    }else{
+        box.nodeValue = false;
+    }
+}
+
+function reverse() {
+    var box = document.getElementById("r");
+    box.nodeValue = true;
+    if(box.checked){
+        box.nodeValue = true;
+    }else{
+        box.nodeValue = false;
+    }
+}
+</script>
 </head>
      
 <div id = "title"> 
@@ -13,12 +44,12 @@
 <form action="" method ="POST">
         <div id="counts">
             <br>
-                <label>Merge by (pick ONE)</label>
-                <br>
-                <input type="checkbox" name="s" onclick="stranded()" value="false">Stranded<br>
-                <input type="checkbox" name="u" onclick="unstranded()" value="false">Unstranded<br>
-                <input type="checkbox" name="r" onclick="reverse()" value="false">Reverse<br>
-                    <br>
+                <label>Merge by </label>
+                <select name = "mergeby">
+                    <option value="s">Stranded</option>
+                    <option value="u">Unstranded</option>
+                    <option value="r">Reverse</option>
+                  </select> <br><br>
 
                 <label>Name for merged file</label>
                 <br>
@@ -28,6 +59,7 @@
                 <label>Extension of files to merge</label>
                 <br>
                 <input type="text" name="ext" value={{request.form.ext}}>
+                <br><br>
                 <button type="submit">Run</button>
         </div>
         <br> <br>

@@ -11,12 +11,12 @@
 
 import os, sys
 
-def createGFF(stepping, marker, formattedfasta, gff, verbose):
+def createGFF(stepping, marker, formattedfasta, gff, verbose, results):
 
 	stepping = int(stepping)
 	first="TRUE"
-	f = open(formattedfasta)
-	out = open(gff, "w")
+	f = open(formattedfasta, 'r')
+	out = open(results + gff, "w")
 	for lines in f:
 		if(lines.startswith(marker)): #checking for new sequence identifier
 			line = lines.split() #splits the current line up into strings
@@ -27,20 +27,21 @@ def createGFF(stepping, marker, formattedfasta, gff, verbose):
 
 		else:
 			seq=lines.rstrip()
-
+			
 
 			region = (id + "\t" + "RefSeq" + "\t" + "region" + "\t" +  "1" +  "\t" + str(len(seq))\
 				+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + "_region" + ";Name=" + id + "\n")
 			out.write(region) #prints for full region
 
-
 			for x in range(1, len(seq), stepping): #prints incrementing by preset step
-				next = x + stepping -1
-				if(next > len(seq)):
-					next = len(seq)
-				line1 = (id + "\t" + "RefSeq" + "\t" + "gene" + "\t" + str(x) +  "\t" + str(next)\
+				n = x + stepping -1
+				print(x)
+				print(n)
+				if(n > len(seq)):
+					n = len(seq)
+				line1 = (id + "\t" + "RefSeq" + "\t" + "gene" + "\t" + str(x) +  "\t" + str(n)\
 					+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + "_" + str(x) + "_gene" + ";Name=" + id + "_" + str(x) + "\n")
-				line2 = (id + "\t" + "RefSeq" + "\t" + "mRNA" + "\t" + str(x) +  "\t" + str(next)\
+				line2 = (id + "\t" + "RefSeq" + "\t" + "mRNA" + "\t" + str(x) +  "\t" + str(n)\
 					+ "\t" + "." + "\t" + "+" + "\t" + "." + "\t" + "ID=" + id + "_" + str(x) + "mRNA" + ";Name=" + id + "_" + str(x) + "\n")
 				out.write(line1) # gene
 				out.write(line2) # MRNA

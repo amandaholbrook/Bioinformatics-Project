@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<title>HARC</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<div id = "title"> 
+    <h1>HARC</h1>
+    <h2>HTML-enabled Analysis of Replicated CHIPseq</h2>
+    </div>
+
+
+    <form action = "" method = "POST" enctype="multipart/form-data">  
+        <p>Upload files to be renamed.</p>
+        <input type="file" name="rename[]" multiple='multiple'/>  
+        <input type = "submit" value="Submit">  <br><br>
+    </form> 
+
+
+<div id = about>
+        <div id = b1>
+        <button onclick ="window.location.href = '/overview'"> <br><br><br>Project Abstract</a> <br><br>
+        </div>
+        <div id = b2>
+        <button onclick ="window.location.href = '/credits'">  Project  Credits</a> <br><br>
+        </div>
+    </div>
+    
+</body>
+</html>
