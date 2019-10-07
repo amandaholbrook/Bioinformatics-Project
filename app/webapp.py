@@ -44,9 +44,10 @@ def gff():
 	fastafile = session.get('fastaname', "None")
 	if request.method == 'POST':
 		formatter(path + fastafile, '>', path)
+		formatted = "formatted_" + fastafile
 		gff = request.form['gff']
 		step = request.form['step']
-		createGFF(step, '>', path+fastafile, gff, verbose, results)
+		createGFF(step, '>', path+formatted, gff, verbose, results)
 		return redirect('/results')
 	else:
 		return render_template('gff.html')
@@ -92,7 +93,7 @@ def comsub():
 	if request.method == 'POST':  
 		files = request.files.getlist("merge[]")
 		for f in files:
-			f.save(os.path.join(path, f.filename))
+			f.save(os.path.join(mergepath, f.filename))
 		return redirect("/combine")
 	else:
 		return render_template('combinesubmit.html')

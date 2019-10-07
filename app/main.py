@@ -12,6 +12,9 @@
 ## Email: amandajoee@gmail.com
 ###################################
 
+
+#use when running from terminal
+
 from gffGenerator import createGFF
 from fastaFormatter import formatter
 from batchRename import rename
