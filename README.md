@@ -17,41 +17,43 @@ COPYRIGHT:
 
 DESCRIPTION:
 
-    High-throughput sequencing dna analysis 
+   High-throughput sequencing dna analysis 
     pipeline development.
 
 FUNCTIONALITY:
 
-    gffGenerator: GFF to fasta conversion,
+   gffGenerator: GFF to fasta conversion,
 
-    fastaFormatter: properly formats fasta file to be read,
+   fastaFormatter: properly formats fasta file to be read,
 
-    batchRename: file directory renaming,
+   batchRename: file directory renaming,
 
-    countCombiner: combining gene count files
+   countCombiner: combining gene count files
 
 # HOW TO RUN
 
 1. DOWNLOAD FLASK:
 
-    pip install Flask
+        pip install Flask
 
     Documentation:
     http://flask.palletsprojects.com/en/1.1.x/
 
 2. CLONE THIS REPOSITORY
 
+        git clone https://github.com/amandaholbrook/HARC.git
+
 3. CD INTO APP FOLDER
 
-    cd app
+        cd app
 
 4. SET ENVIROMENT VARIABLES
 
-    export FLASK_APP=webapp.py
+        export FLASK_APP=webapp.py
 
 5. RUN APP
 
-    flask run
+        flask run
 
 6. OPEN APP
 
