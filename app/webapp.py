@@ -1,31 +1,28 @@
 from flask import Flask, request, url_for, redirect, render_template, flash, session, send_file, send_from_directory, current_app
 import pandas as pd
 import os, sys, zipfile
+from os.path import join, dirname, realpath, abspath
 from python.gffGenerator import createGFF
 from python.fastaFormatter import formatter
 from python.batchRename import rename
 from python.countCombiner import merge
 app = Flask(__name__)
 app.secret_key = "HARC"
-UPLOAD_FOLDER = '/HARCfiles'
+# APP_ROOT = dirname(abspath(__file__))
+# UPLOAD_FOLDER = join(APP_ROOT, '/static/uploads')
 
+UPLOAD_FOLDER = './tmp/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-path = './HARCtemp/'
-if not os.path.exists(path):
-	os.mkdir(path)
-
-results = path + 'results/'
-if not os.path.exists(results):
-	os.mkdir(results)
+RESULTS_FOLDER = app.config['UPLOAD_FOLDER'] + 'results/'
+app.config['RESULTS'] = RESULTS_FOLDER
 
 # route for uploading fasta file
 @app.route('/start', methods = ['GET', 'POST'])  
-def upload():  
-	path = './HARCtemp/'
+def upload():
 	if request.method == 'POST':  
 		fastafile = request.files['fastafile']  
-		fastafile.save(os.path.join(path, fastafile.filename))
+		fastafile.save(join(app.config['UPLOAD_FOLDER']), fastafile.filename)
 		session['fastaname'] = fastafile.filename
 		return redirect("/gff")
 	else:
@@ -36,29 +33,24 @@ def upload():
 # asks for gff file name and step count
 @app.route("/gff", methods=['GET', 'POST'])
 def gff():
-	path = './HARCtemp/'
-	results = path + 'results/'
-	if not os.path.exists(results):
-		os.mkdir(results)
 	verbose = False
 	fastafile = session.get('fastaname', "None")
 	if request.method == 'POST':
-		formatter(path + fastafile, '>', path)
+		formatter(join(app.config['UPLOAD_FOLDER']), fastafile), '>', app.config['UPLOAD_FOLDER'])
 		formatted = "formatted_" + fastafile
 		gff = request.form['gff']
 		step = request.form['step']
-		createGFF(step, '>', path+formatted, gff, verbose, results)
+		createGFF(step, '>', (join(app.config['UPLOAD_FOLDER']), formatted), gff, verbose, app.config['RESULTS_FOLDER'])
 		return redirect('/results')
 	else:
 		return render_template('gff.html')
 
 #route for renaming a directory/group of files
 @app.route('/rename', methods = ['GET', 'POST'])  
-def rensub():  
-	path = './HARCtemp/'
+def rensub(): 
 	if request.method == 'POST':  
 		csv = request.files['csv']  
-		csv.save(os.path.join(path, csv.filename))
+		csv.save(join(app.config['UPLOAD_FOLDER'], csv.filename))
 		session['csv'] = csv.filename
 		return redirect("/renamesubmit")
 	else:
@@ -67,11 +59,9 @@ def rensub():
 # route for renaming a directory/group of files
 @app.route('/renamesubmit', methods=['GET', 'POST'])
 def rename2():
-	path = './HARCtemp/'
-	results = path + 'results/' 
-	renamepath = results + 'rename/'
+	renamepath = app.config['RESULTS_FOLDER'] + 'rename/'
 	csvname = session.get('csv', "None")
-	csv = path + csvname
+	csv = app.config['UPLOAD_FOLDER'] + csvname
 	if not os.path.exists(renamepath):
 		os.mkdir(renamepath)
 	if request.method == 'POST':  
@@ -85,11 +75,8 @@ def rename2():
 
 #route for uploading files to combine the counts
 @app.route('/combinesubmit', methods = ['GET', 'POST'])  
-def comsub():  
-	path = './HARCtemp/'
-	mergepath = path + 'merge/'
-	if not os.path.exists(mergepath):
-		os.mkdir(mergepath)
+def comsub():
+	mergepath = app.config['UPLOAD_FOLDER'] + 'merge/'
 	if request.method == 'POST':  
 		files = request.files.getlist("merge[]")
 		for f in files:
@@ -102,10 +89,8 @@ def comsub():
 #asks for count type, name for merged file, and ext of files to be merged
 @app.route("/combine", methods=['GET', 'POST'])
 def combine():
-	path = './HARCtemp/'
-	results = path + 'results/'
 	if request.method == 'POST':
-		mergepath = path + 'merge/'
+		mergepath = app.config['UPLOAD_FOLDER']+ 'merge/'
 		mergeby = request.form['mergeby']
 		if mergeby == 's':
 			col = "Stranded"
@@ -115,7 +100,7 @@ def combine():
 			col = "Reverse"
 		mergename = request.form['mergename']
 		ext = request.form['ext']
-		merge(mergename, col, ext, mergepath, results)
+		merge(mergename, col, ext, mergepath, app.config['RESULTS_FOLDER'])
 		return redirect('/results')
 	else:
 		return render_template('combine.html')
@@ -129,8 +114,7 @@ def results():
 
 @app.route("/download")
 def download():
-	filename = session.get['download']
-	uploads = os.path.join(current_app.root_path, app.config['UPLOAD_FOLDER'])
+	uploads = os.path.join(current_app.root_path, app.config['RESULTS_FOLDER'])
 	return send_from_directory(directory=uploads, filename=filename)
 
 # route for project credits
