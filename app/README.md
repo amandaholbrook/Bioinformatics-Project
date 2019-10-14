@@ -17,17 +17,17 @@ COPYRIGHT:
 
 DESCRIPTION:
 
-High-throughput sequencing dna analysis pipeline development.
+    High-throughput sequencing dna analysis pipeline development.
 
 FUNCTIONALITY:
 
-gffGenerator: GFF to fasta conversion,
+    gffGenerator: GFF to fasta conversion,
 
-fastaFormatter: properly formats fasta file to be read,
+    fastaFormatter: properly formats fasta file to be read,
 
-batchRename: file directory renaming,
+    batchRename: file directory renaming,
 
-countCombiner: combining gene count files
+    countCombiner: combining gene count files
 
 # HOW TO RUN
 

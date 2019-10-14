@@ -15,6 +15,8 @@
 
 from flask import Flask, request, url_for, redirect, render_template, flash, session, send_file, send_from_directory, current_app
 import pandas as pd
+import webbrowser
+from threading import Timer
 import os, sys, zipfile
 from os.path import join, dirname, realpath, abspath
 from python.gffGenerator import createGFF
@@ -38,8 +40,16 @@ if not os.path.exists(app.config['UPLOAD_FOLDER']):
 if not os.path.exists(app.config['RESULTS']):
 	os.makedirs(app.config['RESULTS'])
 
+
+
+@app.route('/')
+def open_browser():
+      webbrowser.open_new('http://127.0.0.1:5000/start')
+Timer(1, open_browser).start()
+app.run(port=5000)
+
 # route for uploading fasta file
-@app.route('/start', methods = ['GET', 'POST'])  
+@app.route('/start', methods = ['GET', 'POST']) 
 def upload():
 	if request.method == 'POST':  
 		fastafile = request.files['fastafile']  
