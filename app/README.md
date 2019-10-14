@@ -1,4 +1,4 @@
-# Bioinformatics-Project
+# HARC
 
 NAME:
     HARC (HTML-enabled Analysis of Replicated CHIPseq)
@@ -30,7 +30,7 @@ FUNCTIONALITY:
 
     countCombiner: combining gene count files
 
-# HOW TO RUN
+HOW TO RUN
 
 1. DOWNLOAD FLASK:
 
