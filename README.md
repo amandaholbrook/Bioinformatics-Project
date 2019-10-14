@@ -45,7 +45,7 @@ FUNCTIONALITY:
 
 3. CD INTO APP FOLDER
 
-        cd app
+        cd HARC/app/
 
 4. SET ENVIROMENT VARIABLES
 
@@ -54,8 +54,3 @@ FUNCTIONALITY:
 5. RUN APP
 
         flask run
-
-6. OPEN APP
-
-    Simply paste the local address your terminal displays.
-    The starting page will be /start so you will need to add that to the end of the address.
