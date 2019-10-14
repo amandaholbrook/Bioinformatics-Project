@@ -1,3 +1,18 @@
+####################################
+## HARC: (HTML-enabled Analysis of 
+##			Replicated CHIPseq)
+## A Bioinformatics Project
+## High throughput sequencing data
+## analysis pipeline development
+###################################
+## Author: Amanda Holbrook
+##	 & Colin Kruse
+## Copyright: 2019, HARC
+## Version: 1.0.0
+## Email: amandajoee@gmail.com
+###################################
+
+
 from flask import Flask, request, url_for, redirect, render_template, flash, session, send_file, send_from_directory, current_app
 import pandas as pd
 import os, sys, zipfile
